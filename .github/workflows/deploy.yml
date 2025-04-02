@@ -15,6 +15,9 @@ jobs:
         with:
           tool: zola@0.20.0
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Compile static site
         id: build
         run: |
