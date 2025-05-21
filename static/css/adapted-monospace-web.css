@@ -112,6 +112,14 @@ hr:after {
   height: 0;
 }
 
+/* Added by venus -- underlining for feather icons in links */
+a > svg.feather {
+  border-bottom: var(--border-thickness) solid var(--text-color);
+  position: relative;
+  /* This 'top' value required some trial-and-error */
+  top: 0.3rem;
+}
+
 a {
   text-decoration-thickness: var(--border-thickness);
 }
@@ -221,8 +229,14 @@ details ::marker {
   content: '▶';
   margin: 0;
 }
+
 details[open] ::marker {
   content: '▼';
+}
+
+/* Added by venus -- table of contents in a details element should be styled normally */
+details[open] nav ::marker {
+  content: initial;
 }
 
 details :last-child {

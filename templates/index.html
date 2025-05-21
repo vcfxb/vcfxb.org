@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %} 
-    {{ section.content | safe }}
+  {{ section.content | safe }}
 {% endblock %}
+
+{% block nav_bar %}
+<tr>
+  <td><a href="{{ get_url(path="@/projects/_index.md") }}">Projects</a></td>
+  <td><a href="{{ get_url(path="@/blog/_index.md") }}">Blog</a></td>
+  <td><a href="https://github.com/vcfxb"> <i data-feather="github"></i> GitHub </a></td>
+  <td><a href="{{ get_url(path="@/about.md") }}"> <i data-feather="user"></i> About Me </a></td>
+</tr>
+{% endblock nav_bar %}

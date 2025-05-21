@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    404 - Venus X
+{% endblock page_title %}
+
+{% block header_title %}
+    404 - Not Found
+{% endblock header_title %}
+
+{% block content %}
+    The page you are looking for cannot be found. 
+    <a href="{{ get_url(path = "@/_index.md")}}">Click Here</a> to return to the homepage.
+{% endblock content %}

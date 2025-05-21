@@ -9,12 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Title -->
-    {% if page and page.title %} 
+    {% if page %} 
       {% set title = page.title %}
-    {% elif section and section.title %}
+      {% set permalink = page.permalink %}
+    {% elif section %}
       {% set title = section.title %}
+      {% set permalink = section.permalink %}
     {% else %} 
-      {% set title = config.title %} 
+      {% set title = config.title %}
     {% endif %}
 
     <title>{% block title %} {{ title }} {% endblock title %}</title>
@@ -41,35 +43,66 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ get_url(path='css/reset.css') }}"/>
     <link rel="stylesheet" href="{{ get_url(path='css/adapted-monospace-web.css') }}"/>
+
+    <!-- Feather Icons --> 
+    <script src="https://unpkg.com/feather-icons"></script>
   </head>
 
   <body>
     <section class="section">
       <div class="container">
-        <header>
-          <table class="header">
-            <tr>
-              <td colspan="2" rowspan="2" class="width-auto" style="text-align: left;">
-                <h1 class="title">{{ title }}</h1>
-                {% if section and section.extra and section.extra.subtitle %}
-                  {% set subtitle = section.extra.subtitle %}
-                {% endif %}
-                
-                {% if subtitle %}
-                  <span class="subtitle"> {{ subtitle }} </span>
-                {% endif %}
-              </td>
-              {% if page and page.updated %}
-                <th> Last Updated </th>
-                <td> {{ page.updated }} </td>
+        {% if page %}
+          {% set ancestors = page.ancestors %}
+        {% elif section %}
+          {% set ancestors = section.ancestors %}
+        {% else %}
+          {% set ancestors = [] %}
+        {% endif %}
+
+        <span>
+          /
+          {% for ancestor in ancestors %}
+            {% set s = get_section(path=ancestor, metadata_only=true) %}
+            > <a href="{{ s.permalink }}"> {{ s.title }}</a>
+          {% endfor %}
+
+          {% if permalink %}
+            > <a href="{{ permalink }}"> {{ title }}</a>
+          {% endif %}
+        </span>
+        <table class="header">
+          <tr class="width-100">
+            <td style="text-align: left;" colspan="2">
+              <h1 class="title">{% block header_title %} {{title}} {% endblock header_title %}</h1>
+              {% if section and section.extra and section.extra.subtitle %}
+                {% set subtitle = section.extra.subtitle %}
               {% endif %}
-            </tr>
-            {# We get an extra one here to make sure that the box above has a bottom line. #}
-            <tr/>
-          </table>
-        </header>
+              
+              {% if subtitle %}
+                <span class="subtitle"> {{ subtitle }} </span>
+              {% endif %}
+            </td>
+          </tr>
+          {% if page and page.updated %}
+            <tr> 
+              <th scope="row"> Last Updated </th> 
+              <td> {{ page.updated | date(format = "%e %B %Y %H:%M:%S", timezone = "America/New_York")}} USA Eastern Time</td>
+            </tr> 
+          {% endif %}
+
+          {# {% block nav_bar %} {% endblock navbar %} #}
+        </table>
+
+        <table>
+        </table>
+
         {% block content %} {% endblock %}
       </div>
     </section>
+
+    <!-- Replace feather icons with svgs -->
+    <script>
+      feather.replace({width: '1em', height: '1em', 'stroke-width': "3"});
+    </script>
   </body>
 </html>
