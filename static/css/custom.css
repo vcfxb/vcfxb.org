@@ -16,3 +16,8 @@ a > svg.feather {
   /* This 'top' value required some trial-and-error */
   top: calc(2.3 * var(--border-thickness));
 }
+
+/* Table of contents should have no markers within it */
+details[open] #TOC ol ::marker {
+  content: none;
+}

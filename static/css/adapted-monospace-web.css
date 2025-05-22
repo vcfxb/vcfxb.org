@@ -228,11 +228,6 @@ details[open] ::marker {
   content: '▼';
 }
 
-/* Added by venus -- table of contents in a details element should be styled normally */
-details[open] nav ::marker {
-  content: initial;
-}
-
 details :last-child {
   margin-bottom: 0;
 }
