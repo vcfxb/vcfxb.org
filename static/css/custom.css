@@ -1,0 +1,18 @@
+
+/* Nav bar on landing page */
+#global-navbar {
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid; 
+  padding: 1ch; 
+  margin: 1ch 0 2ch 0;
+}
+
+/* Feather icons in links need underlining */
+a > svg.feather {
+  border-bottom: var(--border-thickness) solid var(--text-color);
+  position: relative;
+  /* This 'top' value required some trial-and-error */
+  top: calc(2.3 * var(--border-thickness));
+}

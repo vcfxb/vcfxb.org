@@ -43,10 +43,20 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ get_url(path='css/reset.css') }}"/>
     <link rel="stylesheet" href="{{ get_url(path='css/adapted-monospace-web.css') }}"/>
+    <link rel="stylesheet" href="{{ get_url(path='css/custom.css') }}"/>
 
     <!-- Feather Icons --> 
     <script src="https://unpkg.com/feather-icons"></script>
   </head>
+
+  <header class="section">
+    <nav class="container" id="global-navbar">
+      <a href="{{ get_url(path='@/_index.md') }}"> Home </a>
+      <a href="{{ get_url(path='@/projects/_index.md')}}"> Projects </a>
+      <a href="{{ get_url(path='@/blog/_index.md')}}"> Blog </a>
+      <a href="{{ get_url(path='@/about.md') }}"> About Me </a>
+    </nav>
+  </header>
 
   <body>
     <section class="section">
@@ -59,8 +69,8 @@
           {% set ancestors = [] %}
         {% endif %}
 
-        <span>
-          /
+        <div style="padding-bottom: 1ch;">
+          https://
           {% for ancestor in ancestors %}
             {% set s = get_section(path=ancestor, metadata_only=true) %}
             > <a href="{{ s.permalink }}"> {{ s.title }}</a>
@@ -69,7 +79,7 @@
           {% if permalink %}
             > <a href="{{ permalink }}"> {{ title }}</a>
           {% endif %}
-        </span>
+        </div>
         <table class="header">
           <tr class="width-100">
             <td style="text-align: left;" colspan="2">
@@ -83,17 +93,53 @@
               {% endif %}
             </td>
           </tr>
+          {% if page and page.date %}
+            <tr> 
+              <th scope="row"> Posted </th> 
+              <td> {{ page.date | date(format = "%e %B %Y %H:%M", timezone = "America/New_York")}} American Eastern Time</td>
+            </tr> 
+          {% endif %}
           {% if page and page.updated %}
             <tr> 
               <th scope="row"> Last Updated </th> 
-              <td> {{ page.updated | date(format = "%e %B %Y %H:%M:%S", timezone = "America/New_York")}} USA Eastern Time</td>
+              <td> {{ page.updated | date(format = "%e %B %Y %H:%M", timezone = "America/New_York")}} American Eastern Time</td>
             </tr> 
           {% endif %}
-
-          {# {% block nav_bar %} {% endblock navbar %} #}
-        </table>
-
-        <table>
+          {% if page %}
+            <tr> 
+              <th scope="row"> Word Count </th> 
+              <td> {{ page.word_count }} </td>
+            </tr> 
+            <tr> 
+              <th scope="row"> Reading Time </th> 
+              <td> {{ page.reading_time }} {% if page.reading_time == 1 %} minute {% else %} minutes {% endif %} </td>
+            </tr>
+            {% if page.extra.links %}
+              <tr> 
+                <th scope="row"> Links </th>
+                <td>
+                  {% for name, link in page.extra.links %}
+                    <a href="{{ link.url }}"> 
+                      {% if link.icon %} <i data-feather="{{ link.icon }}"></i> {% endif %} 
+                      {{ name }} 
+                    </a>
+                    &nbsp;
+                  {% endfor %}
+                </td>
+              </tr>
+              {# {% for name, link in page.extra.links %} 
+                <tr> 
+                  <th scope="row"> {{ name }} </th> 
+                  <td> 
+                    <a href="{{ link.url }}"> 
+                      {% if link.icon %} <i data-feather="{{ link.icon }}"></i> {% endif %} 
+                      {{ name }} 
+                    </a> 
+                  </td>
+                </tr>
+              {% endfor %} #}
+            {% endif %}
+          {% endif %}
         </table>
 
         {% block content %} {% endblock %}

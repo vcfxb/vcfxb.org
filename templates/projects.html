@@ -1,0 +1,15 @@
+{% extends "section.html" %}
+
+{% block content %}
+  {% for page in section.pages %}
+    <h2> <a href="{{ page.permalink }}"> {{ page.title }} </a> </h2>
+    <p> {{ page.description }} </p>
+    
+    {% for name, link in page.extra.links %}
+      <a href="{{ link.url }}"> {% if link.icon %} <i data-feather="{{ link.icon }}"></i> {% endif %} {{ name }} </a>
+      &nbsp;
+    {% endfor %}
+
+    <hr/>
+  {% endfor %}
+{% endblock %}
