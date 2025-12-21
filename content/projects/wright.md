@@ -10,3 +10,12 @@ Website = { url = "https://wright.venusblon.de/", icon = "home" }
 "API Docs (main)" = { url = "https://wright.venusblon.de/doc/wright/index.html", icon = "git-branch" }
 Book = { url = "https://wright.venusblon.de/book/index", icon = "book-open" }
 +++
+
+The Wright Programming Language has been my longest running project; I started it in high school.
+It has changed several times since I started working on it all those years ago, and now is in a bit
+of a weird spot where I don't entirely know where to go with it next. It has been a wonderful tool
+for me to learn about lexers, parsers, static analysis, interpreters and compilers. Now that it's
+less useful to me as a learning tool (as I feel that I have generally learned the fundamentals of
+all of those components) I feel that the next place for the project to go is to become a more fully
+fledged software development language. Implementing that is a daunting task, one that I so far haven't
+committed time to.

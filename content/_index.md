@@ -5,5 +5,7 @@ extra.subtitle = "Systems Engineer, Compiler Tinkerer, Occasional Musician, Amat
 
 ## Hello!
 
-My name is Venus Xeon-Blonde. I'm a systems engineer at Cloudflare among other things and this is my website.
-It's currently a work in progress, but expect more links and a blog and a few other things here eventually.
+My name is Venus Xeon-Blonde and this is my website!
+I'm a Systems Engineer at Cloudflare during the day. Outside of work I have a few open source
+projects that I work on and maintain. I also dabble in *Magic: The Gathering*, synth music, 
+and the occasional game of *League of Legends*.

@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  {{ section.title }}
-</h1>
+
+{% if section.pages | length == 0 %}
+  No blog posts yet! Check back later!
+{% endif %}
+
 <ul>
   <!-- If you are using pagination, section.pages will be empty.
        You need to use the paginator object -->  
