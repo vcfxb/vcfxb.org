@@ -1,6 +1,7 @@
 +++
 title = "The Wright Programming Language"
-description = "A multi-purpose programming lanugage for the modern era."
+description = "A multi-purpose programming language for the modern era"
+weight = 0
 
 [extra.links]
 GitHub = { url = "https://github.com/vcfxb/wright-lang", icon = "github" }
